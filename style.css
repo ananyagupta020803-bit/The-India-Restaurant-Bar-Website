@@ -1,0 +1,1268 @@
+/* =========================================
+   GLOBAL RESET & SAFETY
+========================================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden; /* Prevent white space */
+}
+
+/* =========================================
+   HEADER FADE-IN
+========================================= */
+.site-header {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 0 28px;
+
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+
+  opacity: 0;
+  animation: fadeHeader 0.9s ease forwards;
+}
+
+@keyframes fadeHeader {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   NAV CONTAINER (WIDE GREEN PILL)
+========================================= */
+.nav-container {
+  width: 100%;
+  max-width: 1140px; /* wider like image */
+  padding: 28px 88px; /* premium spacing */
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  background: linear-gradient(135deg, #1f3b2a, #153224);
+  border-radius: 999px;
+  border: 4px solid #f1e9d9; /* thicker border */
+}
+.nav-left a,
+.nav-right a {
+  position: relative;   /* ✅ REQUIRED for ::after to work */
+}
+.nav-left a::after,
+.nav-right a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;               /* spacing like your image */
+  width: 0;
+  height: 4px;
+  background: #FFAC1C;
+  border-radius: 10px;
+  transform: translateX(-50%);
+  transition: width 0.35s ease;
+}
+.nav-left a:hover::after,
+.nav-right a:hover::after {
+  width: 100%;
+}
+.nav-left a,
+.nav-right a {
+  color: #f5f1e8;
+  transition: color 0.3s ease;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  color: #FFAC1C; /* same yellow as underline */
+}
+
+
+/* =========================================
+   DESKTOP NAV LINKS
+========================================= */
+.nav-left,
+.nav-right {
+  display: flex;
+  list-style: none;
+  gap: 72px; /* wider spacing like image */
+}
+
+.nav-left a,
+.nav-right a {
+  text-decoration: none;
+  color: #f5f1e8;
+  font-size: 15px;
+  letter-spacing: 4px;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  opacity: 0.75;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+.logo img {
+  height: 56px;
+  width: auto;
+  display: block;
+}
+
+/* =========================================
+   HAMBURGER MENU
+========================================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 2px;
+  background: #f5f1e8;
+}
+
+/* =========================================
+   MOBILE DROPDOWN MENU (CENTERED & FIXED)
+========================================= */
+.mobile-menu {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  background: linear-gradient(135deg, #1f3b2a, #153224);
+
+  border: 2px solid #f1e9d9;
+  border-radius: 22px;
+  padding: 28px 0;
+
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: #f5f1e8;
+  font-size: 15px;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+/* =========================================
+   TABLET & MOBILE VIEW
+========================================= */
+@media (max-width: 1024px) {
+  .nav-container {
+    padding: 24px 56px;
+  }
+
+  .nav-left,
+  .nav-right {
+    gap: 56px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-left,
+  .nav-right {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .nav-container.menu-open .mobile-menu {
+    opacity: 1;
+  }
+
+  .nav-container {
+    padding: 18px 28px;
+    border-radius: 28px;
+  }
+
+  .logo img {
+    height: 46px;
+  }
+}
+
+/* =========================================
+   SMALL MOBILE DEVICES
+========================================= */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 0 16px;
+  }
+
+  .nav-container {
+    padding: 16px 22px;
+  }
+
+  .logo img {
+    height: 42px;
+  }
+}
+
+/* =========================================
+   BODY LOCK WHEN MENU OPEN
+========================================= */
+.nav-open {
+  overflow: hidden;
+}
+
+/* =====================================
+   HERO SECTION WRAPPER
+===================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-section img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+
+
+/* =====================================
+   BACKGROUND IMAGE
+===================================== */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* =====================================
+   DARK OVERLAY (Image Match)
+===================================== */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.55),
+    rgba(0, 0, 0, 0.35)
+  );
+  z-index: 2;
+}
+
+/* =====================================
+   HERO CONTENT CONTAINER
+===================================== */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1100px;
+  padding: 0 24px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+
+/* =====================================
+   TAGLINE
+===================================== */
+.hero-tagline {
+  font-size: 26px;
+  font-weight: 400;
+  color: #f4a623; /* warm orange like image */
+  font-family: "Pacifico", cursive; /* handwritten feel */
+  letter-spacing: 1px;
+}
+
+/* =====================================
+   HERO TITLE
+===================================== */
+.hero-title {
+  color: #ffffff;
+  font-size: 64px;
+  line-height: 1.15;
+  font-weight: 500;
+  max-width: 900px;
+
+  font-family: "Playfair Display", serif;
+}
+
+/* =====================================
+   RESERVATION BUTTON
+===================================== */
+.hero-btn {
+  margin-top: 18px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 18px 48px;
+  background: #0b2d1f;
+  color: #ffffff;
+
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+
+  transition: all 0.3s ease;
+}
+
+/* ✅ UPDATED HOVER EFFECT */
+.hero-btn:hover {
+  background: #e6dccb;        /* light premium beige */
+  border-color: #0b2d1f;      /* dark green border */
+  color: #0b2d1f;             /* dark green text */
+  transform: translateY(-2px);
+}
+
+/* =====================================
+   CHILI ICON
+===================================== */
+.hero-btn .chili {
+  font-size: 18px;
+}
+
+/* =====================================
+   TABLET RESPONSIVENESS
+===================================== */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 52px;
+  }
+
+  .hero-tagline {
+    font-size: 22px;
+  }
+}
+
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
+@media (max-width: 640px) {
+  .hero {
+    min-height: 92vh;
+  }
+
+  .hero-content {
+    gap: 22px;
+  }
+
+  .hero-title {
+    font-size: 38px;
+    line-height: 1.2;
+  }
+
+  .hero-tagline {
+    font-size: 20px;
+  }
+
+  .hero-btn {
+    padding: 16px 36px;
+    font-size: 14px;
+  }
+}
+/* =====================================
+   EXPERIENCE SECTION WRAPPER
+===================================== */
+.experience-section {
+  width: 100%;
+  background: radial-gradient(
+    circle at center,
+    #163a2a 0%,
+    #0e241b 55%,
+    #081913 100%
+  );
+  padding: 120px 24px;
+}
+/* =====================================
+   EXPERIENCE SECTION BACKGROUND
+===================================== */
+.experience-section {
+  width: 100%;
+  background-image: url("./Resources/firstbg.png"); 
+  background-size: cover;        
+  background-position: center;     
+  background-repeat: no-repeat;
+
+  padding: 120px 20px;             /* spacing instead of margins */
+}
+
+/* =====================================
+   MAIN CONTAINER
+===================================== */
+.experience-container {
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* =====================================
+   LEFT CONTENT
+===================================== */
+.experience-left {
+  color: #f5f1e8;
+}
+
+/* -------------------------------------
+   SECTION TAG
+------------------------------------- */
+.experience-tag {
+  display: inline-block;
+  margin-bottom: 24px;
+
+  font-size: 24px;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: #f4a623;
+}
+
+/* -------------------------------------
+   HEADING
+------------------------------------- */
+.experience-left h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 28px;
+  color: #ffffff;
+}
+
+.experience-left h2 span {
+  display: block;
+}
+
+/* -------------------------------------
+   DESCRIPTION TEXT
+------------------------------------- */
+.experience-left p {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 520px;
+  margin-bottom: 40px;
+  color: #e6e1d6;
+}
+
+/* -------------------------------------
+   CTA BUTTON
+------------------------------------- */
+.experience-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 16px 38px;
+  background: #f1e9d9;   /* light (normal) */
+  color: #000;
+
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-decoration: none;
+
+  border-radius: 12px;
+  border: 2px solid #0b2d1f;
+  transition: all 0.3s ease;
+}
+
+.experience-btn:hover {
+  background: #0b2d1f;   /* dark green on hover */
+  color: #f1e9d9;        /* light text */
+  border-color: #f2c94c;
+  transform: translateY(-2px);
+}
+
+/* =====================================
+   RIGHT IMAGE
+===================================== */
+.experience-right {
+  display: flex;
+  justify-content: center;
+}
+
+/* -------------------------------------
+   IMAGE FRAME (OVAL)
+------------------------------------- */
+.image-frame {
+  width: 360px;
+  height: 520px;
+  border-radius: 50% / 35%;
+  overflow: hidden;
+
+  border: 2px solid #e6dccb;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =====================================
+   TABLET RESPONSIVENESS
+===================================== */
+@media (max-width: 1024px) {
+  .experience-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .experience-left h2 {
+    font-size: 44px;
+  }
+
+  .experience-left p {
+    max-width: 100%;
+  }
+
+  .image-frame {
+    width: 320px;
+    height: 460px;
+  }
+}
+
+/* =====================================
+   MOBILE RESPONSIVENESS
+===================================== */
+@media (max-width: 640px) {
+  .experience-section {
+    padding: 90px 20px;
+  }
+
+  .experience-left {
+    text-align: center;
+  }
+
+  .experience-left h2 {
+    font-size: 34px;
+  }
+
+  .experience-left p {
+    font-size: 15px;
+  }
+
+  .experience-btn {
+    padding: 14px 30px;
+    font-size: 13px;
+  }
+
+  .image-frame {
+    width: 260px;
+    height: 380px;
+  }
+}
+/* =====================================
+   SIGNATURE MENU SECTION
+===================================== */
+.signature-menu {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("./Resources/secondbg.jpg"); /* <-- replace with your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+/* =====================================
+   DARK OVERLAY
+===================================== */
+.signature-menu .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+/* =====================================
+   CONTENT WRAPPER
+===================================== */
+.menu-content {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+  color: #ffffff;
+
+  padding: 40px 20px;
+  max-width: 800px;
+}
+
+/* =====================================
+   SMALL TAG LINE
+===================================== */
+.menu-tag {
+  display: inline-block;
+  margin-bottom: 18px;
+
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 600;
+
+  color: #f2c94c;
+  text-transform: uppercase;
+}
+
+/* =====================================
+   MAIN HEADING
+===================================== */
+.menu-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 64px;
+  font-weight: 500;
+  letter-spacing: 2px;
+
+  margin-bottom: 36px;
+  line-height: 1.1;
+}
+
+/* =====================================
+   CTA BUTTON
+===================================== */
+.menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 16px 42px;
+
+  background: #f1e9d9;      /* light (normal state) */
+  color: #0f3d2e;           /* dark green text */
+
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-decoration: none;
+
+  border-radius: 10px;
+  border: 2px solid #0f3d2e;
+
+  transition: all 0.3s ease;
+}
+
+.menu-btn span {
+  font-size: 16px;
+}
+
+/* Hover effect (dark green) */
+.menu-btn:hover {
+  background: #0f3d2e;      /* dark green */
+  color: #f1e9d9;           /* light text */
+  transform: translateY(-2px);
+  border-color: #f2c94c ;
+}
+
+
+/* =====================================
+   TABLET RESPONSIVE
+===================================== */
+@media (max-width: 1024px) {
+  .signature-menu {
+    min-height: 460px;
+  }
+
+  .menu-content h2 {
+    font-size: 52px;
+  }
+}
+
+/* =====================================
+   MOBILE RESPONSIVE
+===================================== */
+@media (max-width: 640px) {
+  .signature-menu {
+    min-height: 420px;
+  }
+
+  .menu-tag {
+    font-size: 12px;
+    letter-spacing: 2px;
+  }
+
+  .menu-content h2 {
+    font-size: 38px;
+  }
+
+  .menu-btn {
+    padding: 14px 32px;
+    font-size: 13px;
+  }
+}/* =====================================
+   PISCO SECTION (FIXED & CONTAINED)
+===================================== */
+.pisco-section {
+  position: relative;
+  width: 100%;
+  padding: 120px 40px;
+
+  /* 🔹 Background Image */
+  background-image:
+    url("/Resources/firstbg.png"); /* 🔁 change image path if needed */
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overflow: hidden; /* prevents white space & image overflow */
+}
+
+
+/* =====================================
+   CONTAINER
+===================================== */
+.pisco-container {
+  max-width: 1300px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* =====================================
+   LEFT CONTENT
+===================================== */
+.pisco-left {
+  color: #f4efe6;
+  z-index: 2;
+}
+
+/* -------------------------------------
+   HEADING
+------------------------------------- */
+.pisco-left h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 52px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  margin-bottom: 28px;
+  color: #ffffff;
+}
+
+/* -------------------------------------
+   TEXT
+------------------------------------- */
+.pisco-text {
+  font-size: 18px;
+  line-height: 1.9;
+  color: #e6e0d6;
+
+  max-width: 520px;
+  margin-bottom: 24px;
+}
+
+/* -------------------------------------
+   CTA BUTTON
+------------------------------------- */
+.pisco-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 28px;
+  padding: 16px 36px;
+
+  background: #f1e9d9;        /* light (normal) */
+  color: #000;
+
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-decoration: none;
+
+  border-radius: 12px;
+  border: 2px solid #0b2d1f;  /* added border */
+  transition: all 0.3s ease;
+}
+
+.pisco-btn:hover {
+  background: #0b2d1f;        /* dark green on hover */
+  color: #f1e9d9;             /* light text */
+  transform: translateY(-2px);
+  border-color: #f2c94c;
+}
+
+/* =====================================
+   RIGHT IMAGE STACK (CONTAINED)
+===================================== */
+.pisco-right {
+  position: relative;
+  width: 100%;
+  min-height: 520px; 
+}
+
+/* -------------------------------------
+   IMAGE CARDS
+------------------------------------- */
+.pisco-image {
+  position: absolute;
+  border-radius: 22px;
+  overflow: hidden;
+
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  background: #000;
+}
+
+.pisco-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* TOP IMAGE */
+.pisco-image.top {
+  width: 360px;
+  height: 260px;
+  top: 0;
+  right: 80px;
+  z-index: 2;
+}
+
+/* BOTTOM IMAGE */
+.pisco-image.bottom {
+  width: 320px;
+  height: 420px;
+  top: 180px;
+  right: 0;
+  z-index: 1;
+}
+
+/* =====================================
+   DECORATIVE SVG (CLIPPED)
+===================================== */
+.hand-svg {
+  position: absolute;
+  bottom: 20px;
+  right: 120px;
+
+  width: 260px;
+  height: auto;
+  opacity: 0.85;
+
+  pointer-events: none;
+}
+
+/* =====================================
+   TABLET RESPONSIVE
+===================================== */
+@media (max-width: 1024px) {
+  .pisco-container {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .pisco-right {
+    min-height: 460px;
+  }
+
+  .pisco-image.top {
+    right: 40px;
+  }
+
+  .pisco-left h2 {
+    font-size: 44px;
+  }
+}
+
+/* =====================================
+   MOBILE RESPONSIVE
+===================================== */
+@media (max-width: 640px) {
+  .pisco-section {
+    padding: 80px 20px;
+  }
+
+  .pisco-left h2 {
+    font-size: 34px;
+  }
+
+  .pisco-text {
+    font-size: 14px;
+  }
+
+  .pisco-right {
+    min-height: auto;
+    margin-top: 40px;
+  }
+
+  .pisco-image {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .pisco-image.top,
+  .pisco-image.bottom {
+    width: 100%;
+    height: auto;
+    right: 0;
+    top: 0;
+  }
+
+  .hand-svg {
+    display: none;
+  }
+}
+/* ===============================
+   FACEBOOK SECTION – MAIN WRAPPER
+   =============================== */
+
+.facebook-section {
+  background-color: #0f2f23; /* Deep green background as in image */
+  padding: 80px 20px;
+}
+
+/* Centering content */
+.facebook-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ===============================
+   SECTION HEADING
+   =============================== */
+
+.facebook-container h2 {
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 60px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ===============================
+   FACEBOOK EMBED LAYOUT
+   =============================== */
+
+.facebook-embed-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+/* ===============================
+   FACEBOOK CARD STYLING
+   =============================== */
+
+.facebook-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 25px 25px 30px;
+  width: 520px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.facebook-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ===============================
+   BRANCH TITLE
+   =============================== */
+
+.facebook-branch-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1b1b1b;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* ===============================
+   FACEBOOK IFRAME FIX
+   =============================== */
+
+.facebook-card .fb-page {
+  width: 100% !important;
+}
+
+/* ===============================
+   TABLET RESPONSIVENESS
+   =============================== */
+
+@media (max-width: 1024px) {
+  .facebook-container h2 {
+    font-size: 32px;
+  }
+
+  .facebook-card {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .facebook-embed-wrapper {
+    gap: 40px;
+  }
+}
+
+/* ===============================
+   MOBILE RESPONSIVENESS
+   =============================== */
+
+@media (max-width: 768px) {
+  .facebook-section {
+    padding: 60px 15px;
+  }
+
+  .facebook-container h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  .facebook-card {
+    padding: 20px;
+  }
+
+  .facebook-branch-title {
+    font-size: 20px;
+  }
+}
+
+/* ===============================
+   SMALL MOBILE DEVICES
+   =============================== */
+
+@media (max-width: 480px) {
+  .facebook-container h2 {
+    font-size: 24px;
+  }
+
+  .facebook-branch-title {
+    font-size: 18px;
+  }
+
+  .facebook-card {
+    border-radius: 10px;
+  }
+}
+.facebook-card iframe,
+.facebook-card span {
+  width: 100% !important;
+}
+
+/* ==================================================
+   FOOTER SECTION
+   ================================================== */
+
+.footer {
+  background-color: #f5f1e8;
+  padding: 80px 20px 0;
+}
+
+/* ---------- Footer Layout ---------- */
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* ==================================================
+   FOOTER LEFT (ABOUT)
+   ================================================== */
+
+.footer-about img {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+.footer-about p {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 380px;
+  margin-bottom: 20px;
+  color: #1b1b1b;
+}
+
+.socials {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.socials i {
+  font-size: 18px;
+  cursor: pointer;
+  color: #1b1b1b;
+  transition: color 0.3s ease;
+}
+
+.socials i:hover {
+  color: #d4af37;
+}
+
+/* ---------- CTA Button ---------- */
+
+.footer-btn {
+  background-color: #0b2d1f;
+  display: inline-block;
+  padding: 15px 30px;
+  border: 2px solid #f2c94c;
+  text-decoration: none;
+  font-size: 16px;
+  color: beige;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  
+}
+
+.footer-btn:hover {
+  background-color: beige;
+  color: #0b2d1f;
+  border-color: #0b2d1f;
+}
+
+/* ==================================================
+   FOOTER RIGHT (CONTACT)
+   ================================================== */
+
+.footer-contact h4 {
+  font-size: 21px;
+  margin: 15px 0 8px;
+  color: #000;
+}
+
+.footer-contact p {
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+
+/* ==================================================
+   FOOTER BOTTOM
+   ================================================== */
+
+.footer-bottom {
+  border-top: 1px solid #ccc;
+  margin-top: 60px;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.footer-bottom a {
+  color: #c62828;
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-bottom a:hover{
+  color: #ffa200;
+  
+}
+/* ==================================================
+   TABLET RESPONSIVENESS
+   ================================================== */
+
+@media (max-width: 1024px) {
+  .testimonials h2 {
+    font-size: 36px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* ==================================================
+   MOBILE RESPONSIVENESS
+   ================================================== */
+
+@media (max-width: 768px) {
+  .testimonials h2 {
+    font-size: 30px;
+  }
+
+  .testimonial-card {
+    width: 260px;
+  }
+
+  .footer {
+    padding: 60px 15px 0;
+  }
+}
+
+/* ==================================================
+   SMALL MOBILE DEVICES
+   ================================================== */
+
+@media (max-width: 480px) {
+  .testimonials h2 {
+    font-size: 26px;
+  }
+
+  .testimonial-card {
+    width: 240px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+  }
+}
