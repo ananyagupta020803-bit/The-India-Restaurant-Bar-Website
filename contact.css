@@ -16,8 +16,10 @@
 ========================================= */
 .nav-container {
   width: 100%;
-  max-width: 1140px; /* wider like image */
-  padding: 28px 88px; /* premium spacing */
+  max-width: 1140px;
+  /* wider like image */
+  padding: 28px 88px;
+  /* premium spacing */
 
   display: flex;
   align-items: center;
@@ -26,29 +28,36 @@
 
   background: linear-gradient(135deg, #1f3b2a, #153224);
   border-radius: 999px;
-  border: 4px solid #f1e9d9; /* thicker border */
+  border: 4px solid #f1e9d9;
+  /* thicker border */
 }
+
 .nav-left a,
 .nav-right a {
-  position: relative;   /* ✅ REQUIRED for ::after to work */
+  position: relative;
+  /* ✅ REQUIRED for ::after to work */
 }
+
 .nav-left a::after,
 .nav-right a::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -8px;               /* spacing like your image */
+  bottom: -8px;
+  /* spacing like your image */
   width: 0;
   height: 4px;
-  background: #FFAC1C;
+  background: #ffac1c;
   border-radius: 10px;
   transform: translateX(-50%);
   transition: width 0.35s ease;
 }
+
 .nav-left a:hover::after,
 .nav-right a:hover::after {
   width: 100%;
 }
+
 .nav-left a,
 .nav-right a {
   color: #f5f1e8;
@@ -57,7 +66,8 @@
 
 .nav-left a:hover,
 .nav-right a:hover {
-  color: #FFAC1C; /* same yellow as underline */
+  color: #ffac1c;
+  /* same yellow as underline */
 }
 
 /* =========================================
@@ -167,7 +177,8 @@
 .hamburger span {
   width: 26px;
   height: 2px;
-  background: #ffffff; /* FORCE WHITE */
+  background: #ffffff;
+  /* FORCE WHITE */
 }
 
 /* =========================================
@@ -243,6 +254,7 @@
    RESPONSIVE
 ========================================= */
 @media (max-width: 992px) {
+
   .nav-left,
   .nav-right {
     display: none;
@@ -258,7 +270,6 @@
   }
 }
 
-
 /* =====================================
    HERO SECTION WRAPPER
 ===================================== */
@@ -272,14 +283,13 @@
   align-items: center;
   justify-content: center;
 }
+
 .hero-section img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
 }
-
-
 
 /* =====================================
    BACKGROUND IMAGE
@@ -299,11 +309,9 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.55),
-    rgba(0, 0, 0, 0.35)
-  );
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.35));
   z-index: 2;
 }
 
@@ -329,8 +337,8 @@
 .hero-tagline {
   font-size: 26px;
   font-weight: 400;
-  color: #f4a623; /* warm orange like image */
-  font-family: "Pacifico", cursive; /* handwritten feel */
+  color: #f4a623;
+  font-family: cursive;
   letter-spacing: 1px;
 }
 
@@ -344,7 +352,7 @@
   font-weight: 500;
   max-width: 900px;
 
-  font-family: "Playfair Display", serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* =====================================
@@ -370,19 +378,15 @@
   transition: all 0.3s ease;
 }
 
-/* ✅ UPDATED HOVER EFFECT */
+/* ✅ HOVER EFFECT */
 .hero-btn:hover {
-  background: #e6dccb;        /* light premium beige */
-  border-color: #0b2d1f;      /* dark green border */
-  color: #0b2d1f;             /* dark green text */
+  background: #e6dccb;
+  /* light premium beige */
+  border-color: #0b2d1f;
+  /* dark green border */
+  color: #0b2d1f;
+  /* dark green text */
   transform: translateY(-2px);
-}
-
-/* =====================================
-   CHILI ICON
-===================================== */
-.hero-btn .chili {
-  font-size: 18px;
 }
 
 /* =====================================
@@ -425,13 +429,110 @@
   }
 }
 
+/* =====================================
+   EXPERIENCE SECTION WRAPPER
+===================================== */
+.experience-section {
+  width: 100%;
+  background: radial-gradient(circle at center,
+      #163a2a 0%,
+      #0e241b 55%,
+      #081913 100%);
+  padding: 120px 24px;
+}
+
+/* =====================================
+   HERO IMAGE SLIDER
+===================================== */
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* =====================================
+   SLIDER ARROWS
+===================================== */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0b2d1f;
+}
+
+.slider-arrow.left {
+  left: 24px;
+}
+
+.slider-arrow.right {
+  right: 24px;
+}
+
+/* MOBILE ADJUSTMENT */
+@media (max-width: 640px) {
+  .slider-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .slider-arrow.left {
+    left: 14px;
+  }
+
+  .slider-arrow.right {
+    right: 14px;
+  }
+}
+
+.hero-overlay {
+  pointer-events: none;
+}
+
 /* =====================================================
    CONTACT SECTION
 ===================================================== */
 .contact-section {
   padding: 90px 40px 100px;
-  background:
-    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("/Resources/firstbg.png") center/cover no-repeat;
 }
 
@@ -468,7 +569,7 @@
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
 }
 
 .contact-overlay {
@@ -617,6 +718,7 @@
     padding: 60px 20px;
   }
 }
+
 /* ==================================================
    FOOTER SECTION
    ================================================== */
@@ -682,7 +784,6 @@
   color: beige;
   border-radius: 6px;
   transition: all 0.3s ease;
-  
 }
 
 .footer-btn:hover {
@@ -724,10 +825,11 @@
   text-decoration: none;
   font-weight: 600;
 }
-.footer-bottom a:hover{
+
+.footer-bottom a:hover {
   color: #ffa200;
-  
 }
+
 /* ==================================================
    TABLET RESPONSIVENESS
    ================================================== */

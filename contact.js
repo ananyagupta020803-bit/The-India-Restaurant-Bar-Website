@@ -1,27 +1,103 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+  /* ===============================
+     NAVIGATION
+  =============================== */
   const nav = document.querySelector(".nav-container");
   const hamburger = document.querySelector(".hamburger");
   const mobileHome = document.querySelector(".mobile-home");
   const mobileDropdown = document.querySelector(".mobile-dropdown");
 
-  /* Toggle menu */
+  if (!nav || !hamburger) return;
+
+  /* Toggle mobile menu */
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     nav.classList.toggle("menu-open");
   });
 
   /* Mobile HOME dropdown */
-  mobileHome.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    mobileDropdown.classList.toggle("open");
-  });
+  if (mobileHome && mobileDropdown) {
+    mobileHome.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      mobileDropdown.classList.toggle("open");
+    });
+  }
 
   /* Close menu on outside click */
-  document.addEventListener("click", () => {
-    nav.classList.remove("menu-open");
-    mobileDropdown.classList.remove("open");
+  document.addEventListener("click", (e) => {
+    if (!nav.contains(e.target)) {
+      nav.classList.remove("menu-open");
+      mobileDropdown?.classList.remove("open");
+    }
   });
 
+  /* ==========================
+     HERO SLIDER (FINAL FIX)
+  ========================== */
+  const slides = document.querySelectorAll(".hero-slide");
+  const nextBtn = document.querySelector(".slider-arrow.right");
+  const prevBtn = document.querySelector(".slider-arrow.left");
+
+  if (!slides.length || !nextBtn || !prevBtn) return;
+
+  let currentIndex = 0;
+  let intervalId = null;
+  const DURATION = 4000;
+  let isAnimating = false;
+
+  function updateSlides(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+  }
+
+  function goNext() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlides(currentIndex);
+
+    setTimeout(() => (isAnimating = false), 300);
+  }
+
+  function goPrev() {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlides(currentIndex);
+
+    setTimeout(() => (isAnimating = false), 300);
+  }
+
+  function startAuto() {
+    stopAuto();
+    intervalId = setInterval(goNext, DURATION);
+  }
+
+  function stopAuto() {
+    if (intervalId) clearInterval(intervalId);
+  }
+
+  function handleNext(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goNext();
+    startAuto();
+  }
+
+  function handlePrev(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    goPrev();
+    startAuto();
+  }
+
+  /* ✅ One event – works on desktop + mobile */
+  nextBtn.addEventListener("pointerup", handleNext);
+  prevBtn.addEventListener("pointerup", handlePrev);
+
+  startAuto();
 });

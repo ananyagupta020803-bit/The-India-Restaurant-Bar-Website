@@ -60,22 +60,35 @@
 
     <!-- HERO SECTION -->
     <section class="hero">
-      <img
-        src="./Resources/bg.jpg"
-        alt="Restaurant Background"
-        class="hero-bg"
-      />
+      <!-- HERO SLIDER -->
+      <div class="hero-slider">
+        <img
+          src="./Resources/slide1.jpg"
+          class="hero-slide active"
+          alt="Restaurant Image 1"
+        />
+        <img
+          src="./Resources/slide2.jpg"
+          class="hero-slide"
+          alt="Restaurant Image 2"
+        />
+
+        <button class="slider-arrow left" aria-label="Previous slide">
+          &#10094;
+        </button>
+        <button class="slider-arrow right" aria-label="Next slide">
+          &#10095;
+        </button>
+      </div>
 
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
         <p class="hero-tagline">“One Table · A Whole Journey”</p>
         <h1 class="hero-title">The India Restaurant & Bar Tuakau and Pokeno</h1>
-        <a href="/reservation.html" class="hero-btn">
-          RESERVATIONS
-          <span class="chili"></span>
-        </a>
+        <a href="/reservation.html" class="hero-btn"> RESERVATIONS </a>
       </div>
+
       <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Pacifico&display=swap"
         rel="stylesheet"
@@ -185,7 +198,7 @@
             www.theindiarestaurant.co.nz and we will deliver our delicious food
             directly to your doorstep.
           </p>
-    
+
           <a href="reservation.html" class="footer-btn">BOOK A TABLE</a>
         </div>
 

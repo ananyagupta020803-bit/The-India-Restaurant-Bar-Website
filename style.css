@@ -12,7 +12,8 @@
 html,
 body {
   width: 100%;
-  overflow-x: hidden; /* Prevent white space */
+  overflow-x: hidden;
+  /* Prevent white space */
 }
 
 /* =========================================
@@ -39,6 +40,7 @@ body {
     opacity: 0;
     transform: translateY(-12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -50,8 +52,10 @@ body {
 ========================================= */
 .nav-container {
   width: 100%;
-  max-width: 1140px; /* wider like image */
-  padding: 28px 88px; /* premium spacing */
+  max-width: 1140px;
+  /* wider like image */
+  padding: 28px 88px;
+  /* premium spacing */
 
   display: flex;
   align-items: center;
@@ -60,29 +64,36 @@ body {
 
   background: linear-gradient(135deg, #1f3b2a, #153224);
   border-radius: 999px;
-  border: 4px solid #f1e9d9; /* thicker border */
+  border: 4px solid #f1e9d9;
+  /* thicker border */
 }
+
 .nav-left a,
 .nav-right a {
-  position: relative;   /* ✅ REQUIRED for ::after to work */
+  position: relative;
+  /* ✅ REQUIRED for ::after to work */
 }
+
 .nav-left a::after,
 .nav-right a::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -8px;               /* spacing like your image */
+  bottom: -8px;
+  /* spacing like your image */
   width: 0;
   height: 4px;
-  background: #FFAC1C;
+  background: #ffac1c;
   border-radius: 10px;
   transform: translateX(-50%);
   transition: width 0.35s ease;
 }
+
 .nav-left a:hover::after,
 .nav-right a:hover::after {
   width: 100%;
 }
+
 .nav-left a,
 .nav-right a {
   color: #f5f1e8;
@@ -91,9 +102,9 @@ body {
 
 .nav-left a:hover,
 .nav-right a:hover {
-  color: #FFAC1C; /* same yellow as underline */
+  color: #ffac1c;
+  /* same yellow as underline */
 }
-
 
 /* =========================================
    DESKTOP NAV LINKS
@@ -102,7 +113,8 @@ body {
 .nav-right {
   display: flex;
   list-style: none;
-  gap: 72px; /* wider spacing like image */
+  gap: 72px;
+  /* wider spacing like image */
 }
 
 .nav-left a,
@@ -194,6 +206,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
   .nav-left,
   .nav-right {
     display: none;
@@ -258,14 +271,13 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .hero-section img {
   width: 100%;
   height: auto;
   display: block;
   object-fit: cover;
 }
-
-
 
 /* =====================================
    BACKGROUND IMAGE
@@ -285,11 +297,9 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.55),
-    rgba(0, 0, 0, 0.35)
-  );
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.35));
   z-index: 2;
 }
 
@@ -315,8 +325,8 @@ body {
 .hero-tagline {
   font-size: 26px;
   font-weight: 400;
-  color: #f4a623; 
-  font-family: cursive; 
+  color: #f4a623;
+  font-family: cursive;
   letter-spacing: 1px;
 }
 
@@ -330,7 +340,7 @@ body {
   font-weight: 500;
   max-width: 900px;
 
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* =====================================
@@ -358,9 +368,12 @@ body {
 
 /* ✅ HOVER EFFECT */
 .hero-btn:hover {
-  background: #e6dccb;        /* light premium beige */
-  border-color: #0b2d1f;      /* dark green border */
-  color: #0b2d1f;             /* dark green text */
+  background: #e6dccb;
+  /* light premium beige */
+  border-color: #0b2d1f;
+  /* dark green border */
+  color: #0b2d1f;
+  /* dark green text */
   transform: translateY(-2px);
 }
 
@@ -403,30 +416,116 @@ body {
     font-size: 14px;
   }
 }
+
 /* =====================================
    EXPERIENCE SECTION WRAPPER
 ===================================== */
 .experience-section {
   width: 100%;
-  background: radial-gradient(
-    circle at center,
-    #163a2a 0%,
-    #0e241b 55%,
-    #081913 100%
-  );
+  background: radial-gradient(circle at center,
+      #163a2a 0%,
+      #0e241b 55%,
+      #081913 100%);
   padding: 120px 24px;
 }
+
+/* =====================================
+   HERO IMAGE SLIDER
+===================================== */
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+/* =====================================
+   SLIDER ARROWS
+===================================== */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 4;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: #ffffff;
+
+  font-size: 22px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+.slider-arrow:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0b2d1f;
+}
+
+.slider-arrow.left {
+  left: 24px;
+}
+
+.slider-arrow.right {
+  right: 24px;
+}
+
+/* MOBILE ADJUSTMENT */
+@media (max-width: 640px) {
+  .slider-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .slider-arrow.left {
+    left: 14px;
+  }
+
+  .slider-arrow.right {
+    right: 14px;
+  }
+}
+
+.hero-overlay {
+  pointer-events: none;
+}
+
 /* =====================================
    EXPERIENCE SECTION BACKGROUND
 ===================================== */
 .experience-section {
   width: 100%;
-  background-image: url("./Resources/firstbg.png"); 
-  background-size: cover;        
-  background-position: center;     
+  background-image: url("./Resources/firstbg.png");
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 
-  padding: 120px 20px;            
+  padding: 120px 20px;
 }
 
 /* =====================================
@@ -466,7 +565,7 @@ body {
    HEADING
 ------------------------------------- */
 .experience-left h2 {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 52px;
   font-weight: 600;
   line-height: 1.2;
@@ -498,7 +597,8 @@ body {
   gap: 10px;
 
   padding: 16px 38px;
-  background: #f1e9d9;   /* light (normal) */
+  background: #f1e9d9;
+  /* light (normal) */
   color: #000;
 
   font-size: 14px;
@@ -512,8 +612,10 @@ body {
 }
 
 .experience-btn:hover {
-  background: #0b2d1f;   /* dark green on hover */
-  color: #f1e9d9;        /* light text */
+  background: #0b2d1f;
+  /* dark green on hover */
+  color: #f1e9d9;
+  /* light text */
   border-color: #f2c94c;
   transform: translateY(-2px);
 }
@@ -597,6 +699,7 @@ body {
     height: 380px;
   }
 }
+
 /* =====================================
    SIGNATURE MENU SECTION
 ===================================== */
@@ -609,7 +712,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  background-image: url("./Resources/secondbg.jpg"); /* <-- replace with your image */
+  background-image: url("./Resources/secondbg.jpg");
+  /* <-- replace with your image */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -660,7 +764,7 @@ body {
    MAIN HEADING
 ===================================== */
 .menu-content h2 {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 64px;
   font-weight: 500;
   letter-spacing: 2px;
@@ -679,8 +783,10 @@ body {
 
   padding: 16px 42px;
 
-  background: #f1e9d9;      /* light (normal state) */
-  color: #0f3d2e;           /* dark green text */
+  background: #f1e9d9;
+  /* light (normal state) */
+  color: #0f3d2e;
+  /* dark green text */
 
   font-size: 14px;
   letter-spacing: 2px;
@@ -699,12 +805,13 @@ body {
 
 /* Hover effect (dark green) */
 .menu-btn:hover {
-  background: #0f3d2e;      /* dark green */
-  color: #f1e9d9;           /* light text */
+  background: #0f3d2e;
+  /* dark green */
+  color: #f1e9d9;
+  /* light text */
   transform: translateY(-2px);
-  border-color: #f2c94c ;
+  border-color: #f2c94c;
 }
-
 
 /* =====================================
    TABLET RESPONSIVE
@@ -740,7 +847,9 @@ body {
     padding: 14px 32px;
     font-size: 13px;
   }
-}/* =====================================
+}
+
+/* =====================================
    PISCO SECTION (FIXED & CONTAINED)
 ===================================== */
 .pisco-section {
@@ -749,16 +858,15 @@ body {
   padding: 120px 40px;
 
   /* 🔹 Background Image */
-  background-image:
-    url("/Resources/firstbg.png"); /* 🔁 change image path if needed */
+  background-image: url("/Resources/firstbg.png");
+  /* 🔁 change image path if needed */
 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  overflow: hidden; 
+  overflow: hidden;
 }
-
 
 /* =====================================
    CONTAINER
@@ -785,7 +893,7 @@ body {
    HEADING
 ------------------------------------- */
 .pisco-left h2 {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 52px;
   font-weight: 500;
   line-height: 1.2;
@@ -817,7 +925,8 @@ body {
   margin-top: 28px;
   padding: 16px 36px;
 
-  background: #f1e9d9;        /* light (normal) */
+  background: #f1e9d9;
+  /* light (normal) */
   color: #000;
 
   font-size: 13px;
@@ -826,13 +935,16 @@ body {
   text-decoration: none;
 
   border-radius: 12px;
-  border: 2px solid #0b2d1f;  /* added border */
+  border: 2px solid #0b2d1f;
+  /* added border */
   transition: all 0.3s ease;
 }
 
 .pisco-btn:hover {
-  background: #0b2d1f;        /* dark green on hover */
-  color: #f1e9d9;             /* light text */
+  background: #0b2d1f;
+  /* dark green on hover */
+  color: #f1e9d9;
+  /* light text */
   transform: translateY(-2px);
   border-color: #f2c94c;
 }
@@ -843,7 +955,7 @@ body {
 .pisco-right {
   position: relative;
   width: 100%;
-  min-height: 520px; 
+  min-height: 520px;
 }
 
 /* -------------------------------------
@@ -958,12 +1070,14 @@ body {
     display: none;
   }
 }
+
 /* ===============================
    FACEBOOK SECTION – MAIN WRAPPER
    =============================== */
 
 .facebook-section {
-  background-color: #0f2f23; /* Deep green background as in image */
+  background-color: #0f2f23;
+  /* Deep green background as in image */
   padding: 80px 20px;
 }
 
@@ -994,7 +1108,8 @@ body {
   display: flex;
   justify-content: center;
   gap: 50px;
-  flex-wrap: wrap; /* Ensures responsiveness */
+  flex-wrap: wrap;
+  /* Ensures responsiveness */
 }
 
 /* ===============================
@@ -1093,6 +1208,7 @@ body {
     border-radius: 10px;
   }
 }
+
 .facebook-card iframe,
 .facebook-card span {
   width: 100% !important;
@@ -1163,7 +1279,6 @@ body {
   color: beige;
   border-radius: 6px;
   transition: all 0.3s ease;
-  
 }
 
 .footer-btn:hover {
@@ -1205,10 +1320,11 @@ body {
   text-decoration: none;
   font-weight: 600;
 }
-.footer-bottom a:hover{
+
+.footer-bottom a:hover {
   color: #ffa200;
-  
 }
+
 /* ==================================================
    TABLET RESPONSIVENESS
    ================================================== */
