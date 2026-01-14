@@ -314,8 +314,8 @@ body {
 .hero-tagline {
   font-size: 26px;
   font-weight: 400;
-  color: #f4a623; /* warm orange like image */
-  font-family: "Pacifico", cursive; /* handwritten feel */
+  color: #f4a623; 
+  font-family: cursive; 
   letter-spacing: 1px;
 }
 
@@ -329,7 +329,7 @@ body {
   font-weight: 500;
   max-width: 900px;
 
-  font-family: "Playfair Display", serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* =====================================
@@ -363,12 +363,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* =====================================
-   CHILI ICON
-===================================== */
-.hero-btn .chili {
-  font-size: 18px;
-}
 /* =====================================
    TABLET RESPONSIVENESS
 ===================================== */
