@@ -53,15 +53,11 @@ body {
 .nav-container {
   width: 100%;
   max-width: 1140px;
-  /* wider like image */
   padding: 28px 88px;
-  /* premium spacing */
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
-
   background: linear-gradient(135deg, #1f3b2a, #153224);
   border-radius: 999px;
   border: 4px solid #f1e9d9;
@@ -71,7 +67,6 @@ body {
 .nav-left a,
 .nav-right a {
   position: relative;
-  /* ✅ REQUIRED for ::after to work */
 }
 
 .nav-left a::after,
