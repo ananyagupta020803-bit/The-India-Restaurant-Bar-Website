@@ -313,6 +313,7 @@ body {
    TAGLINE
 ===================================== */
 .hero-tagline {
+    margin-top: 100px;
   font-size: 26px;
   font-weight: 400;
   color: #f4a623; 
